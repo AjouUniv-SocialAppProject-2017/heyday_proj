@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "392569009112",
+    "firebase_url": "https://haydayproj.firebaseio.com",
+    "project_id": "haydayproj",
+    "storage_bucket": "haydayproj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392569009112:android:2e0d76db20b6d15d",
+        "android_client_info": {
+          "package_name": "com.example.choikim.hayday_proj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "392569009112-0kdr9jje62qcfos6sd4optjofo76eo9s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.choikim.hayday_proj",
+            "certificate_hash": "b143efa9e87463b3094a05cda58bd8479a3b69d3"
+          }
+        },
+        {
+          "client_id": "392569009112-2n2s2qj7cg37c1h7aafnccp2rvp2lh7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAd0Hta9HHSwtF8GByWPNir08yAQQTUEY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "392569009112-2n2s2qj7cg37c1h7aafnccp2rvp2lh7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
