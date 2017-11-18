@@ -10,7 +10,7 @@ import android.os.Handler;
  */
 
 public class SplashActivity extends Activity {
-    int SPLASH_TIME=2000;
+    int SPLASH_TIME=4000;
 
     @Override protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
