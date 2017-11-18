@@ -14,7 +14,7 @@ public class SplashActivity extends Activity {
 
     @Override protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-        //setContentContentView는 하지 않습니다.
+        setContentView(R.layout.acrivity_splash);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
