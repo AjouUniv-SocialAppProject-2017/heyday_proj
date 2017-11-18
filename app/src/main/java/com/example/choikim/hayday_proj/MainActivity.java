@@ -29,28 +29,28 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new FragmentActivity()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new ClassActivity()).commit();
             }
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new FragmentActivity1()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new BoardActivity()).commit();
             }
         });
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new FragmentActivity2()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new RecommendActivity()).commit();
             }
         });
 
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new FragmentActivity3()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new MyActivity()).commit();
             }
         });
 
