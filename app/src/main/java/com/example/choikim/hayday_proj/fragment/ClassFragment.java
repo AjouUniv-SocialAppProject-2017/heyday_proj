@@ -1,4 +1,4 @@
-package com.example.choikim.hayday_proj;
+package com.example.choikim.hayday_proj.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,13 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.choikim.hayday_proj.R;
+
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by jamti on 2017-11-19.
  */
 
-public class ClassActivity extends Fragment {
+public class ClassFragment extends Fragment {
 
     @Nullable
     @Override

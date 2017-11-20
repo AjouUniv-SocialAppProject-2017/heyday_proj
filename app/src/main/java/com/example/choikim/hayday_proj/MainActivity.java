@@ -1,18 +1,14 @@
 package com.example.choikim.hayday_proj;
 
-import android.app.Fragment;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.facebook.login.LoginManager;
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.EventListener;
+import com.example.choikim.hayday_proj.fragment.BoardFragment;
+import com.example.choikim.hayday_proj.fragment.ClassFragment;
+import com.example.choikim.hayday_proj.fragment.MyFragment;
+import com.example.choikim.hayday_proj.fragment.Fragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,28 +25,28 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new ClassActivity()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new ClassFragment()).commit();
             }
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new BoardActivity()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new BoardFragment()).commit();
             }
         });
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new RecommendActivity()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new Fragment()).commit();
             }
         });
 
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new MyActivity()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new MyFragment()).commit();
             }
         });
 
