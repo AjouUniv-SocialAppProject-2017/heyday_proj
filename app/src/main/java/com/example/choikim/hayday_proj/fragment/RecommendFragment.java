@@ -13,7 +13,7 @@ import com.example.choikim.hayday_proj.R;
  * Created by jamti on 2017-11-19.
  */
 
-public class Fragment extends android.app.Fragment {
+public class RecommendFragment extends android.app.Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

@@ -84,6 +84,7 @@ public class LoginActivity extends Activity {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
+                            finish();
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -116,12 +117,9 @@ public class LoginActivity extends Activity {
                     public void onComplete(@NonNull com.google.android.gms.tasks.Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-
                             FirebaseUser user = mAuth.getCurrentUser();
-
                         } else {
                             // If sign in fails, display a message to the user.
-
                             Toast.makeText(LoginActivity.this, "이메일 로그인 완료", Toast.LENGTH_SHORT).show();
 
                         }

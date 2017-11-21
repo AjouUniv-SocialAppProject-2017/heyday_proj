@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import com.example.choikim.hayday_proj.fragment.BoardFragment;
 import com.example.choikim.hayday_proj.fragment.ClassFragment;
 import com.example.choikim.hayday_proj.fragment.MyFragment;
-import com.example.choikim.hayday_proj.fragment.Fragment;
+import com.example.choikim.hayday_proj.fragment.RecommendFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new Fragment()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new RecommendFragment()).commit();
             }
         });
 
