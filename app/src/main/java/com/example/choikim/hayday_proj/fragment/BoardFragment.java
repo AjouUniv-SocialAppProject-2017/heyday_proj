@@ -1,6 +1,6 @@
 package com.example.choikim.hayday_proj.fragment;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -15,9 +15,20 @@ import com.example.choikim.hayday_proj.R;
 
 public class BoardFragment extends Fragment{
 
+    public BoardFragment() {
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_board,container,false);
     }
+
+
 }
