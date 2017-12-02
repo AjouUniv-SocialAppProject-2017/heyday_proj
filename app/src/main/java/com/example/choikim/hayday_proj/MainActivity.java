@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.app.FragmentManager;
+
 
 import com.example.choikim.hayday_proj.fragment.BoardFragment;
 import com.example.choikim.hayday_proj.fragment.ClassFragment;
@@ -23,12 +25,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         viewPager = (ViewPager)findViewById(R.id.viewpager);
         ImageButton btn_class = (ImageButton)findViewById(R.id.btn_class);
         ImageButton btn_board = (ImageButton)findViewById(R.id.btn_board);
         ImageButton btn_recommend = (ImageButton)findViewById(R.id.btn_recommend);
         ImageButton btn_my = (ImageButton)findViewById(R.id.btn_my);
-
 
         viewPager.setAdapter(new pagerAdapter(getSupportFragmentManager()));
         viewPager.setCurrentItem(0);

@@ -5,7 +5,7 @@ package com.example.choikim.hayday_proj.model;
  */
 
 public class BoardModel {
-    public String uri;
+    public String uid;
 
     //단순 게시글과 수요조사 게시글 모델 구분
     public String flag;
