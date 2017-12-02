@@ -49,8 +49,8 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <EditText
-        android:id="@+id/item_board_context"
+    <TextView
+        android:id="@+id/board_item_context"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
