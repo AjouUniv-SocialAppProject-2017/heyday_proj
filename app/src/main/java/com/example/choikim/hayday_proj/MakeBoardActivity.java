@@ -31,7 +31,7 @@ public class MakeBoardActivity extends Activity {
 
     long now=System.currentTimeMillis();
     Date date =new Date(now);
-    SimpleDateFormat sdfNow=new SimpleDateFormat("yyyy/MM/DD HH:mm:ss");
+    SimpleDateFormat sdfNow=new SimpleDateFormat("yyyy/MM/dd HH:mm");
     String formatDate=sdfNow.format(date);
 
     private DatabaseReference mDatabase;
@@ -68,10 +68,9 @@ public class MakeBoardActivity extends Activity {
         BoardModel boardModel = new BoardModel();
         boardModel.context=contextText.getText().toString();
         boardModel.uid=auth.getInstance().getCurrentUser().getUid();
-
+        boardModel.imagePath=auth.getInstance().getCurrentUser().getPhotoUrl().toString();
         boardModel.name=auth.getInstance().getCurrentUser().getDisplayName();
         boardModel.wTime=formatDate;
-        boardModel.imagePath=null;
         boardModel.flag="1";
 
         FirebaseDatabase.getInstance().getReference().child("boards").push().setValue(boardModel);
