@@ -1,5 +1,6 @@
 package com.example.choikim.hayday_proj.fragment;
 
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.example.choikim.hayday_proj.MakeBoardActivity;
 import com.example.choikim.hayday_proj.R;
 import com.example.choikim.hayday_proj.model.BoardModel;
@@ -95,6 +100,13 @@ public class BoardFragment extends Fragment{
             ((BoardViewHolder)holder).textView_context.setText(boardModels.get(position).context);
             ((BoardViewHolder)holder).textView_wTime.setText(boardModels.get(position).wTime);
             ((BoardViewHolder)holder).textView_name.setText(boardModels.get(position).name);
+
+            Glide.with(holder.itemView.getContext())
+                    .load(boardModels.get(position).imagePath)
+                    .apply(new RequestOptions().circleCrop())
+                    .into(((BoardViewHolder)holder).imageView_profile);
+
+
         }
 
         @Override
@@ -106,9 +118,11 @@ public class BoardFragment extends Fragment{
             public TextView textView_context;
             public TextView textView_wTime;
             public TextView textView_name;
+            public ImageView imageView_profile;
 
             public BoardViewHolder(View view) {
                 super(view);
+                imageView_profile=(ImageView)view.findViewById(R.id.imageView_item_board_profile);
                 textView_context=(TextView)view.findViewById(R.id.board_item_context);
                 textView_name=(TextView)view.findViewById(R.id.board_item_name);
                 textView_wTime=(TextView)view.findViewById(R.id.board_item_date);

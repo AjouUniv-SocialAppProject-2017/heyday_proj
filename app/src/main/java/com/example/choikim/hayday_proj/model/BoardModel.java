@@ -1,5 +1,7 @@
 package com.example.choikim.hayday_proj.model;
 
+import android.net.Uri;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +14,6 @@ public class BoardModel {
 
     //단순 게시글과 수요조사 게시글 모델 구분
     public String flag;
-
     public String wTime;
     public String context;
     public String imagePath;
