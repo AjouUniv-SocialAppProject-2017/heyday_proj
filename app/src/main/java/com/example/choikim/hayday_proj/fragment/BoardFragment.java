@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -71,8 +72,8 @@ public class BoardFragment extends Fragment{
                         BoardModel boardModel=snapshot.getValue(BoardModel.class);
                         boardModels.add(boardModel);
                     }
+                    Collections.reverse(boardModels);
                     notifyDataSetChanged();
-
                 }
 
                 @Override

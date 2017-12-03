@@ -31,7 +31,7 @@ public class MakeBoardActivity extends Activity {
 
     long now=System.currentTimeMillis();
     Date date =new Date(now);
-    SimpleDateFormat sdfNow=new SimpleDateFormat("yyyy/MM/DD HH:mm:ss");
+    SimpleDateFormat sdfNow=new SimpleDateFormat("yyyy/MM/dd HH:mm");
     String formatDate=sdfNow.format(date);
 
     private DatabaseReference mDatabase;
