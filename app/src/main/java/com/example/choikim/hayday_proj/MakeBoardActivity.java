@@ -61,7 +61,6 @@ public class MakeBoardActivity extends Activity {
                 finish();
             }
         });
-
     }
     private void upload(){
 
