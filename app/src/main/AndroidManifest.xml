@@ -50,9 +50,18 @@
         <activity android:name=".MakeBoardActivity">
         </activity>
 
+        //class frgment layout , class creat activity
+        <activity android:name=".ClassActivity">
+        </activity>
+
+        <activity android:name="ClassCreateActivity">
+        </activity>
+        <activity android:name=".BoardCommentActivity">
+        </activity>
 
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
 </manifest>

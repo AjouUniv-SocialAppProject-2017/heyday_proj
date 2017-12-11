@@ -40,6 +40,10 @@ public class LoginActivity extends Activity {
         mAuth = FirebaseAuth.getInstance();
 
         mCallbackManager = CallbackManager.Factory.create();
+
+        /*권한주기*/
+        requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},0);
+
         LoginButton loginButton = (LoginButton) findViewById(R.id.facebook_login_button);
         loginButton.setReadPermissions("email", "public_profile");
         loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
