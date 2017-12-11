@@ -30,7 +30,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -75,6 +77,7 @@ public class BoardFragment extends Fragment{
 
         RecyclerViewAdapter(){
             boardModels=new ArrayList<>();
+
             FirebaseDatabase.getInstance().getReference().child("boards").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -105,9 +108,11 @@ public class BoardFragment extends Fragment{
 
             mDatabase=FirebaseDatabase.getInstance().getReference();
 
+
             ((BoardViewHolder)holder).textView_context.setText(boardModels.get(position).context);
             ((BoardViewHolder)holder).textView_wTime.setText(boardModels.get(position).wTime);
             ((BoardViewHolder)holder).textView_name.setText(boardModels.get(position).name);
+            ((BoardViewHolder)holder).textView_comment_cnt.setText(String.valueOf(boardModels.get(position).cntComment));
 
             Glide.with(holder.itemView.getContext())
                     .load(boardModels.get(position).imagePath)
@@ -151,6 +156,7 @@ public class BoardFragment extends Fragment{
             public ImageView imageView_profile;
             public Button btn_like;
             public Button btn_make_comment;
+            public TextView textView_comment_cnt;
 
             public BoardViewHolder(View view) {
                 super(view);
@@ -160,6 +166,7 @@ public class BoardFragment extends Fragment{
                 textView_wTime=(TextView)view.findViewById(R.id.board_item_date);
                 btn_like = (Button)view.findViewById(R.id.btn_item_board_like);
                 btn_make_comment = (Button)view.findViewById(R.id.btn_item_board_comment);
+                textView_comment_cnt=(TextView)view.findViewById(R.id.textView_item_board_commentCnt);
             }
         }
     }
