@@ -3,14 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:onClick="@+id/item_class">
 
     <ImageView
         android:id="@+id/class_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
-        android:src="@drawable/ic_launcher_foreground"/>
+        android:src="@drawable/ic_launcher_foreground"
+        android:scaleType="fitXY"/>
 
     <LinearLayout
         android:layout_weight="1"
@@ -24,6 +26,7 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:text="호영짱"
+            android:textStyle="bold"
             android:src="@drawable/ic_accessibility_black_24dp"/>
 
         <TextView
@@ -32,7 +35,8 @@
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:text="당신을 안드로이드의 세카이로 초대합니다"
-            android:textSize="15dp"/>
+            android:textSize="15dp"
+            android:gravity="center"/>
 
 
     </LinearLayout>

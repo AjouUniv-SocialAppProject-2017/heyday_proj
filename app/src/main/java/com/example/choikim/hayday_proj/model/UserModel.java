@@ -5,11 +5,10 @@ package com.example.choikim.hayday_proj.model;
  */
 
 public class UserModel {
+
     public String uid;
     public String name;
     public String profileImagePath;
     public String email;
-
-
 
 }
