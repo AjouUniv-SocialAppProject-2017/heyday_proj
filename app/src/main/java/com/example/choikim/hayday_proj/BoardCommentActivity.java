@@ -31,7 +31,9 @@ import org.w3c.dom.Text;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -125,7 +127,9 @@ public class BoardCommentActivity extends Activity{
                         commentsModels.add(comment);
                     }
                     notifyDataSetChanged();
-
+                    Map<String,Object> childUpdates =new HashMap<>();
+                    childUpdates.put("/boards/"+boardKey+"/cntComment/",commentsModels.size());
+                    mDatabase.updateChildren(childUpdates);
                 }
 
                 @Override

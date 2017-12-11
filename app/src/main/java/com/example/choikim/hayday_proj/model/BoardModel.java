@@ -18,8 +18,9 @@ public class BoardModel {
     public String context;
     public String imagePath;
     public String name;
-    public int cntGood;
+    public long cntGood;
     public String boardUid;
+    public long cntComment;
 
     public Map<String,Comment> comments=new HashMap<>();//댓글 기능
     public Map<String,Like> likes=new HashMap<>();//좋아요 카운팅
