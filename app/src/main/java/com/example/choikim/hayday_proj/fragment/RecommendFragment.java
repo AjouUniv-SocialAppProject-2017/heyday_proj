@@ -14,8 +14,6 @@ import com.example.choikim.hayday_proj.R;
  */
 
 public class RecommendFragment extends Fragment {
-
-
     public RecommendFragment() {
 
     }
@@ -24,8 +22,6 @@ public class RecommendFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
-
 
     @Nullable
     @Override

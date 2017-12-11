@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HeyDayProj_branch.iml" filepath="$PROJECT_DIR$/HeyDayProj_branch.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/heyday_proj.iml" filepath="$PROJECT_DIR$/heyday_proj.iml" />
+      <module fileurl="file://C:\Users\khy12\AndroidStudioProjects\heyday_branch\heyday_proj\heyday_proj-master.iml" filepath="C:\Users\khy12\AndroidStudioProjects\heyday_branch\heyday_proj\heyday_proj-master.iml" />
     </modules>
   </component>
 </project>

@@ -44,11 +44,11 @@ public class ClassActivity extends AppCompatActivity{
 
         ImageButton btn_create_class = (ImageButton)findViewById(R.id.create_class);
         btn_create_class.setOnClickListener(new View.OnClickListener(){
-           @Override
+            @Override
             public void onClick(View v){
-               Intent intent = new Intent (ClassActivity.this,ClassCreateActivity.class);
-               startActivity(intent);
-           }
+                Intent intent = new Intent (ClassActivity.this,ClassCreateActivity.class);
+                startActivity(intent);
+            }
 
         });
 
@@ -79,8 +79,6 @@ public class ClassActivity extends AppCompatActivity{
 
             }
         });
-
-
     }
 
     class ClassRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -91,14 +89,10 @@ public class ClassActivity extends AppCompatActivity{
             return new CustomViewHolder(view);
         }
 
-
         private class CustomViewHolder extends RecyclerView.ViewHolder{
-
             ImageView class_image;
             TextView class_teacher;
             TextView class_name;
-
-
 
             public CustomViewHolder(View view){
                 super(view);

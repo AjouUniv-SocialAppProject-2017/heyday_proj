@@ -52,8 +52,7 @@ public class ClassCreateActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
 
-        /*권한주기*/
-        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},0);
+
 
         class_image = (ImageButton)findViewById(R.id.class_image);
         class_name = (EditText)findViewById(R.id.class_name);
@@ -78,8 +77,7 @@ public class ClassCreateActivity extends AppCompatActivity {
 
                 upload(img_path);
                 Toast.makeText(ClassCreateActivity.this, "강의 등록이 완료되었습니다", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ClassCreateActivity.this,ClassActivity.class);
-                startActivity(intent);
+                finish();
 
             }
         });
@@ -130,6 +128,7 @@ public class ClassCreateActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle unsuccessful uploads
+                Toast.makeText(ClassCreateActivity.this, "강의 등록이 실패했습니다.", Toast.LENGTH_SHORT).show();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override

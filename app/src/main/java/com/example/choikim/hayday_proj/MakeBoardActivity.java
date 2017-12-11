@@ -3,6 +3,7 @@ package com.example.choikim.hayday_proj;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,6 +56,7 @@ public class MakeBoardActivity extends Activity {
             }
         });
 
+        //뒤로가기
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,8 +65,9 @@ public class MakeBoardActivity extends Activity {
         });
 
     }
-    private void upload(){
 
+    //upload board
+    private void upload(){
         BoardModel boardModel = new BoardModel();
         boardModel.context=contextText.getText().toString();
         boardModel.uid=auth.getInstance().getCurrentUser().getUid();
@@ -72,8 +75,10 @@ public class MakeBoardActivity extends Activity {
         boardModel.name=auth.getInstance().getCurrentUser().getDisplayName();
         boardModel.wTime=formatDate;
         boardModel.flag="1";
+        boardModel.boardUid=FirebaseDatabase.getInstance().getReference().child("boards").push().getKey();
+        Log.i("hihihi",boardModel.boardUid);
 
-        FirebaseDatabase.getInstance().getReference().child("boards").push().setValue(boardModel);
+        FirebaseDatabase.getInstance().getReference().child("boards").child(boardModel.boardUid).setValue(boardModel);
 
     }
 }

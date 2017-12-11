@@ -21,10 +21,6 @@ import com.example.choikim.hayday_proj.R;
  */
 
 public class ClassFragment extends Fragment {
-
-
-
-
     public ClassFragment() {
 
     }
