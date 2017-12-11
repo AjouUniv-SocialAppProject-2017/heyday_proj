@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "392569009112-6bc7ou0m32g4vfmffv4r92q14ro2af7i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.choikim.hayday_proj",
+            "certificate_hash": "057d0ded8a6363370716a3f1ae0ddeb6475aa84a"
+          }
+        },
+        {
           "client_id": "392569009112-0kdr9jje62qcfos6sd4optjofo76eo9s.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
