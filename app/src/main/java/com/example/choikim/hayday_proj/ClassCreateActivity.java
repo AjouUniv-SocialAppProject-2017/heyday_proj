@@ -41,6 +41,8 @@ public class ClassCreateActivity extends AppCompatActivity {
     private EditText class_name;
     private EditText class_index;
     private EditText class_content;
+    private EditText class_local;
+    private EditText class_time;
     private Button class_uplord;
     private String img_path;
 
@@ -53,10 +55,11 @@ public class ClassCreateActivity extends AppCompatActivity {
 
 
 
-
         class_image = (ImageButton)findViewById(R.id.class_image);
         class_name = (EditText)findViewById(R.id.class_name);
         class_index = (EditText)findViewById(R.id.class_index);
+        class_local = (EditText)findViewById(R.id.class_local);
+        class_time = (EditText)findViewById(R.id.class_time);
         class_content = (EditText)findViewById(R.id.class_content);
         class_uplord = (Button)findViewById(R.id.class_uplord);
 
@@ -69,7 +72,6 @@ public class ClassCreateActivity extends AppCompatActivity {
                 startActivityForResult(intent,GALLERY_CODE);
             }
         });
-
 
         class_uplord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,8 +142,11 @@ public class ClassCreateActivity extends AppCompatActivity {
                 classModel.class_image = downloadUrl.toString();
                 classModel.class_name = class_name.getText().toString();
                 classModel.class_index = class_index.getText().toString();
+                classModel.class_time = class_time.getText().toString();
+                classModel.class_local = class_local.getText().toString();
                 classModel.class_content = class_content.getText().toString();
                 classModel.uid = auth.getCurrentUser().getUid();
+                classModel.imagePath = auth.getCurrentUser().getPhotoUrl().toString();
                 classModel.userId = auth.getCurrentUser().getEmail();
                 classModel.user_name = auth.getCurrentUser().getDisplayName();
 

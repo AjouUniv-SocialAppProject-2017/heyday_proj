@@ -1,6 +1,6 @@
 package com.example.choikim.hayday_proj;
 
-import android.*;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         viewPager = (ViewPager)findViewById(R.id.viewpager);
         ImageButton btn_class = (ImageButton)findViewById(R.id.btn_class);
         ImageButton btn_board = (ImageButton)findViewById(R.id.btn_board);
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         ImageButton btn_my = (ImageButton)findViewById(R.id.btn_my);
 
         viewPager.setAdapter(new pagerAdapter(getSupportFragmentManager()));
-        viewPager.setCurrentItem(0);
+        viewPager.setCurrentItem(1);
 
         btn_class.setOnClickListener(movePageListener);
         btn_class.setTag(0);
