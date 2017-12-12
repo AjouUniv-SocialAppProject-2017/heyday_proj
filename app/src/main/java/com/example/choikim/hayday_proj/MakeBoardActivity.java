@@ -75,6 +75,8 @@ public class MakeBoardActivity extends Activity {
         boardModel.name=auth.getInstance().getCurrentUser().getDisplayName();
         boardModel.wTime=formatDate;
         boardModel.flag="1";
+        boardModel.cntComment=0;
+        boardModel.cntGood=0;
         boardModel.boardUid=FirebaseDatabase.getInstance().getReference().child("boards").push().getKey();
         Log.i("hihihi",boardModel.boardUid);
 

@@ -80,7 +80,7 @@ public class BoardCommentActivity extends Activity{
         commentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         commentRecyclerView.setAdapter(new CommentRecyclerViewAdapter());
 
-
+        //댓글 창 닫기 -> jump to main activity
         btnBackSpace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +88,7 @@ public class BoardCommentActivity extends Activity{
             }
         });
 
+        //댓글 쓰기 버튼 -> add comment 1 line
         btnMakeComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
