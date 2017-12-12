@@ -23,15 +23,7 @@ public class ClassModel implements Serializable {
     public String user_name;
 
     public int starCount = 0;
-    public Map<String, Boolean> participant = new HashMap<>();
-
-    // public Map<String, Participant> participant = new HashMap<>();
-
-    public static class Participant{
-        public String name;
-        public String uid;
-        public String email;
-    }
+    public Map<String, String> participant = new HashMap<>();
 
 
 
