@@ -31,7 +31,9 @@ import org.w3c.dom.Text;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -78,7 +80,7 @@ public class BoardCommentActivity extends Activity{
         commentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         commentRecyclerView.setAdapter(new CommentRecyclerViewAdapter());
 
-
+        //댓글 창 닫기 -> jump to main activity
         btnBackSpace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +88,7 @@ public class BoardCommentActivity extends Activity{
             }
         });
 
+        //댓글 쓰기 버튼 -> add comment 1 line
         btnMakeComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,7 +128,9 @@ public class BoardCommentActivity extends Activity{
                         commentsModels.add(comment);
                     }
                     notifyDataSetChanged();
-
+                    Map<String,Object> childUpdates =new HashMap<>();
+                    childUpdates.put("/boards/"+boardKey+"/cntComment/",commentsModels.size());
+                    mDatabase.updateChildren(childUpdates);
                 }
 
                 @Override

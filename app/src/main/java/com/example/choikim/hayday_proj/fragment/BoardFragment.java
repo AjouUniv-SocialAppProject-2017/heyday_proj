@@ -23,14 +23,19 @@ import com.example.choikim.hayday_proj.BoardCommentActivity;
 import com.example.choikim.hayday_proj.MakeBoardActivity;
 import com.example.choikim.hayday_proj.R;
 import com.example.choikim.hayday_proj.model.BoardModel;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -56,6 +61,7 @@ public class BoardFragment extends Fragment{
         btnMakeBoard=(ImageButton)view.findViewById(R.id.btn_board_write);
         recyclerView=(RecyclerView)view.findViewById(R.id.BoradFragment_recyclerview);
 
+        //글 만들기 버튼 -> jump to make board activity
         btnMakeBoard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +69,7 @@ public class BoardFragment extends Fragment{
                 startActivity(intent);
             }
         });
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new RecyclerViewAdapter());
 
@@ -75,6 +82,7 @@ public class BoardFragment extends Fragment{
 
         RecyclerViewAdapter(){
             boardModels=new ArrayList<>();
+
             FirebaseDatabase.getInstance().getReference().child("boards").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -104,17 +112,19 @@ public class BoardFragment extends Fragment{
         public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
 
             mDatabase=FirebaseDatabase.getInstance().getReference();
+            final String boardKey = boardModels.get(position).boardUid;
 
             ((BoardViewHolder)holder).textView_context.setText(boardModels.get(position).context);
             ((BoardViewHolder)holder).textView_wTime.setText(boardModels.get(position).wTime);
             ((BoardViewHolder)holder).textView_name.setText(boardModels.get(position).name);
+            ((BoardViewHolder)holder).textView_comment_cnt.setText(String.valueOf(boardModels.get(position).cntComment));
 
             Glide.with(holder.itemView.getContext())
                     .load(boardModels.get(position).imagePath)
                     .apply(new RequestOptions().circleCrop())
                     .into(((BoardViewHolder)holder).imageView_profile);
 
-            //board comment view listener
+            //댓글 창으로 넘어가기 board comment view listener
             ((BoardViewHolder)holder).btn_make_comment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -123,11 +133,15 @@ public class BoardFragment extends Fragment{
                     //send board key data to board comment activity
                     final DatabaseReference ref=mDatabase.child("boards");
                     Intent intent = new Intent(getActivity(), BoardCommentActivity.class);
-                    intent.putExtra("key",boardModels.get(position).boardUid);
+                    intent.putExtra("key",boardKey);
                     startActivity(intent);
                 }
             });
 
+
+            final DatabaseReference mDatabaseLike=FirebaseDatabase.getInstance().getReference()
+                    .child("boards").child(boardKey).child("cntGood");
+            final FirebaseAuth auth = FirebaseAuth.getInstance();
 
             //board like button listener
             ((BoardViewHolder)holder).btn_like.setOnClickListener(new View.OnClickListener() {
@@ -135,9 +149,13 @@ public class BoardFragment extends Fragment{
                 public void onClick(View view) {
 
                 }
-            });
+            });//like button onclick listener end
 
         }
+
+
+
+
 
         @Override
         public int getItemCount() {
@@ -151,6 +169,7 @@ public class BoardFragment extends Fragment{
             public ImageView imageView_profile;
             public Button btn_like;
             public Button btn_make_comment;
+            public TextView textView_comment_cnt;
 
             public BoardViewHolder(View view) {
                 super(view);
@@ -160,6 +179,7 @@ public class BoardFragment extends Fragment{
                 textView_wTime=(TextView)view.findViewById(R.id.board_item_date);
                 btn_like = (Button)view.findViewById(R.id.btn_item_board_like);
                 btn_make_comment = (Button)view.findViewById(R.id.btn_item_board_comment);
+                textView_comment_cnt=(TextView)view.findViewById(R.id.textView_item_board_commentCnt);
             }
         }
     }
