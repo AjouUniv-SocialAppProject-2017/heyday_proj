@@ -41,7 +41,6 @@ public class ClassActivity extends AppCompatActivity{
     private FirebaseDatabase database;
 
     private List<ClassModel> classdata = new ArrayList<>();
-    private List<String> uidList = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

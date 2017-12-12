@@ -26,6 +26,7 @@ public class ClassViewActivity extends AppCompatActivity {
     private FirebaseDatabase database;
 
     private String uid;
+    int temp = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +100,14 @@ public class ClassViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onStarClicked(database.getReference().child("Class").child(uid));
+                if(temp == 0) {
+                    temp = temp + 1;
+                    Toast.makeText(ClassViewActivity.this, "강의등록이 완료되었습니다.", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    temp = temp - 1;
+                    Toast.makeText(ClassViewActivity.this,"강의등록이 취소되었습니다.",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
