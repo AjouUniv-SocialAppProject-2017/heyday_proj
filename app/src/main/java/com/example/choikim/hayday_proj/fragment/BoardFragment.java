@@ -47,7 +47,12 @@ public class BoardFragment extends Fragment{
 
     private RecyclerView recyclerView;
     ImageButton btnMakeBoard;
+    private List<String> uidLists = new ArrayList<>();
+
+
     private DatabaseReference mDatabase;
+    private FirebaseAuth auth;
+    private FirebaseDatabase database;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,10 @@ public class BoardFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_board,container,false);
         btnMakeBoard=(ImageButton)view.findViewById(R.id.btn_board_write);
         recyclerView=(RecyclerView)view.findViewById(R.id.BoradFragment_recyclerview);
+
+
+        auth=FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
 
         //글 만들기 버튼 -> jump to make board activity
         btnMakeBoard.setOnClickListener(new View.OnClickListener() {
@@ -87,11 +96,18 @@ public class BoardFragment extends Fragment{
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     boardModels.clear();
+                    uidLists.clear();
+
+
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                         BoardModel boardModel=snapshot.getValue(BoardModel.class);
                         boardModels.add(boardModel);
+                        String uidKey = snapshot.getKey();
+                        uidLists.add(uidKey);
+
                     }
                     Collections.reverse(boardModels);
+                    Collections.reverse(uidLists);
                     notifyDataSetChanged();
                 }
 
@@ -117,7 +133,10 @@ public class BoardFragment extends Fragment{
             ((BoardViewHolder)holder).textView_context.setText(boardModels.get(position).context);
             ((BoardViewHolder)holder).textView_wTime.setText(boardModels.get(position).wTime);
             ((BoardViewHolder)holder).textView_name.setText(boardModels.get(position).name);
+            ((BoardViewHolder)holder).textView_like_cnt.setText(String.valueOf(boardModels.get(position).starCount));
             ((BoardViewHolder)holder).textView_comment_cnt.setText(String.valueOf(boardModels.get(position).cntComment));
+
+
 
             Glide.with(holder.itemView.getContext())
                     .load(boardModels.get(position).imagePath)
@@ -139,18 +158,56 @@ public class BoardFragment extends Fragment{
             });
 
 
-            final DatabaseReference mDatabaseLike=FirebaseDatabase.getInstance().getReference()
-                    .child("boards").child(boardKey).child("cntGood");
-            final FirebaseAuth auth = FirebaseAuth.getInstance();
 
             //board like button listener
             ((BoardViewHolder)holder).btn_like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Log.i("11111",uidLists.get(position));
+                    onStarClicked(database.getReference().child("boards").child(uidLists.get(position)));
 
                 }
             });//like button onclick listener end
 
+            if (boardModels.get(position).stars.containsKey(auth.getCurrentUser().getUid())){
+                ((BoardViewHolder)holder).imageView_heartimage.setImageResource(R.drawable.ic_favorite_black_24dp);
+            }else{
+                ((BoardViewHolder)holder).imageView_heartimage.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+            }
+
+        }
+
+        private void onStarClicked(DatabaseReference postRef) {
+            postRef.runTransaction(new Transaction.Handler() {
+                @Override
+                public Transaction.Result doTransaction(MutableData mutableData) {
+                    BoardModel p = mutableData.getValue(BoardModel.class);
+                    if (p == null) {
+                        return Transaction.success(mutableData);
+                    }
+
+                    if (p.stars.containsKey(auth.getCurrentUser().getUid())) {
+                        // Unstar the post and remove self from stars
+                        p.starCount = p.starCount - 1;
+                        p.stars.remove(auth.getCurrentUser().getUid());
+                    } else {
+                        // Star the post and add self to stars
+                        p.starCount = p.starCount + 1;
+                        p.stars.put(auth.getCurrentUser().getUid(), true);
+                    }
+
+                    // Set value and report transaction success
+                    mutableData.setValue(p);
+                    return Transaction.success(mutableData);
+                }
+
+                @Override
+                public void onComplete(DatabaseError databaseError, boolean b,
+                                       DataSnapshot dataSnapshot) {
+                    // Transaction completed
+                    Log.d("tag", "postTransaction:onComplete:" + databaseError);
+                }
+            });
         }
 
 
@@ -170,6 +227,8 @@ public class BoardFragment extends Fragment{
             public Button btn_like;
             public Button btn_make_comment;
             public TextView textView_comment_cnt;
+            public ImageView imageView_heartimage;
+            public TextView textView_like_cnt;
 
             public BoardViewHolder(View view) {
                 super(view);
@@ -180,6 +239,8 @@ public class BoardFragment extends Fragment{
                 btn_like = (Button)view.findViewById(R.id.btn_item_board_like);
                 btn_make_comment = (Button)view.findViewById(R.id.btn_item_board_comment);
                 textView_comment_cnt=(TextView)view.findViewById(R.id.textView_item_board_commentCnt);
+                imageView_heartimage=(ImageView)view.findViewById(R.id.imageView_item_board_heart);
+                textView_like_cnt=(TextView)view.findViewById(R.id.textView_item_board_likeCnt);
             }
         }
     }
