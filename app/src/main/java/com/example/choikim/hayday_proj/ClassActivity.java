@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,6 +44,7 @@ public class ClassActivity extends AppCompatActivity{
     private FirebaseDatabase database;
 
     private List<ClassModel> classdata = new ArrayList<>();
+    private List<ClassModel> searchdata = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,9 +71,11 @@ public class ClassActivity extends AppCompatActivity{
                     ClassModel classmodel = snapshot.getValue(ClassModel.class);
                     if(class_index.equals("8")) {
                         classdata.add(classmodel);
+                        searchdata.add(classmodel);
                     }
                     else if(class_index.equals( classmodel.class_index)==true){
                         classdata.add(classmodel);
+                        searchdata.add(classmodel);
                     }
 
 
@@ -80,6 +86,30 @@ public class ClassActivity extends AppCompatActivity{
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        final EditText search_class = (EditText)findViewById(R.id.search_class);
+        search_class.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                classdata.clear();
+                for(int i=0; i<searchdata.size(); i++){
+                    if(searchdata.get(i).class_name.contains(s)){
+                        classdata.add(searchdata.get(i));
+                    }
+                }
+                classRecyclerViewAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
