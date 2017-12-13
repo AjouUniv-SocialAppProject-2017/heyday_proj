@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,8 +25,8 @@ public class ClassViewActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseDatabase database;
 
-    //private List<ClassModel> classdata = new ArrayList<>();
     private String uid;
+    int temp = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,43 +100,51 @@ public class ClassViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onStarClicked(database.getReference().child("Class").child(uid));
+                if(temp == 0) {
+                    temp = temp + 1;
+                    Toast.makeText(ClassViewActivity.this, "강의신청이 완료되었습니다.", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    temp = temp - 1;
+                    Toast.makeText(ClassViewActivity.this,"강의신청이 취소되었습니다.",Toast.LENGTH_LONG).show();
+                }
             }
         });
+
     }
 
     private void onStarClicked(DatabaseReference postRef) {
         postRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
-                ClassModel classmodel = mutableData.getValue(ClassModel.class);
-                if (classmodel == null) {
+                ClassModel p = mutableData.getValue(ClassModel.class);
+                if (p == null) {
                     return Transaction.success(mutableData);
                 }
 
-                if (classmodel.participant.containsKey(auth.getCurrentUser().getUid())) {
+                if (p.participant.containsKey(auth.getCurrentUser().getUid())) {
                     // Unstar the post and remove self from stars
-                    classmodel.starCount = classmodel.starCount - 1;
-                    classmodel.participant.remove(auth.getCurrentUser().getUid());
-                    Toast.makeText(ClassViewActivity.this,"강의신청이 취소되었습니다.",Toast.LENGTH_LONG).show();
+                    p.starCount = p.starCount - 1;
+                    p.participant.remove(auth.getCurrentUser().getUid());
                 } else {
                     // Star the post and add self to stars
-                    classmodel.starCount = classmodel.starCount + 1;
-                    classmodel.participant.put(auth.getCurrentUser().getUid(), true);
-                    Toast.makeText(ClassViewActivity.this,"강의신청이 완료되었습니다.",Toast.LENGTH_LONG).show();
+                    p.starCount = p.starCount + 1;
+                    p.participant.put(auth.getCurrentUser().getUid(), auth.getCurrentUser().getUid());
                 }
 
                 // Set value and report transaction success
-                mutableData.setValue(classmodel);
+                mutableData.setValue(p);
                 return Transaction.success(mutableData);
             }
 
             @Override
             public void onComplete(DatabaseError databaseError, boolean b,
                                    DataSnapshot dataSnapshot) {
-
             }
         });
     }
+
+
 
 
 }
