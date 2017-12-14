@@ -12,7 +12,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:background="@drawable/ic_health"
             android:scaleType="fitXY"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -21,14 +20,12 @@
             android:text="헬스/뷰티" />
 
         <Button
-            android:background="@drawable/ic_foregin"
             android:scaleType="fitXY"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:id="@+id/btn_foregin"
-            android:text="외국어"
-            android:textColor="#ffffff"/>
+            android:text="외국어" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +34,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:background="@drawable/ic_computer"
             android:scaleType="fitXY"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -46,14 +42,12 @@
             android:text="컴퓨터"/>
 
         <Button
-            android:background="@drawable/ic_music_art"
             android:scaleType="fitXY"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:id="@+id/btn_music_art"
-            android:text="음악/미술"
-            android:textColor="#ffffff"/>
+            android:text="음악/미술" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,7 +56,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:background="@drawable/ic_social"
             android:scaleType="fitXY"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -71,14 +64,12 @@
             android:text="사회/이슈"/>
 
         <Button
-            android:background="@drawable/ic_sport"
             android:scaleType="fitXY"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:id="@+id/btn_sport"
-            android:text="스포츠"
-            android:textColor="#ffffff"/>
+            android:text="스포츠" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,7 +78,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:background="@drawable/ic_hobby"
             android:scaleType="fitXY"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -96,7 +86,6 @@
             android:text="이색취미"/>
 
         <Button
-            android:background="@drawable/ic_all"
             android:scaleType="fitXY"
             android:layout_weight="1"
             android:layout_height="match_parent"

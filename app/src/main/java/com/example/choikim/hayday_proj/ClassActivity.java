@@ -1,6 +1,5 @@
 package com.example.choikim.hayday_proj;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,11 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,7 +49,6 @@ public class ClassActivity extends AppCompatActivity{
 
         Intent intent = getIntent();
         final String class_index = intent.getExtras().getString("value");
-
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -116,6 +112,7 @@ public class ClassActivity extends AppCompatActivity{
 
 
     }
+
 
     class ClassRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
