@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_new_class"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -15,6 +15,7 @@
         android:background="@layout/ic_btn_layout"/>
 
     <Button
+        android:id="@+id/btn_best_class"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
