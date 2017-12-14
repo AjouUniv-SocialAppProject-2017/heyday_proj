@@ -52,7 +52,7 @@ public class ClassActivity extends AppCompatActivity{
 
         Intent intent = getIntent();
         final String class_index = intent.getExtras().getString("value");
-
+        Toast.makeText(this,class_index,Toast.LENGTH_LONG).show();
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
