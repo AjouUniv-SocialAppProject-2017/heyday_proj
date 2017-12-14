@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.example.choikim.hayday_proj.model.ClassModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ClassNewActivity extends AppCompatActivity {
@@ -59,7 +58,9 @@ public class ClassNewActivity extends AppCompatActivity {
                     ClassModel classmodel = snapshot.getValue(ClassModel.class);
                     classdata.add(classmodel);
                     searchdata.add(classmodel);
+
                 }
+                Collections.reverse(classdata);
                 classRecyclerViewAdapter.notifyDataSetChanged();
 
             }

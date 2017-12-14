@@ -11,14 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="최신 강의"
-        android:background="@layout/ic_btn_layout"/>
+        android:text="최신 강의"/>
 
     <Button
         android:id="@+id/btn_best_class"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="인기 강의"
-        android:background="@layout/ic_btn_layout"/>
+        android:text="인기 강의" />
 </LinearLayout>

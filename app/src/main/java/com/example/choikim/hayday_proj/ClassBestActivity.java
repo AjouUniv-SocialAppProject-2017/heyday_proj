@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.choikim.hayday_proj.model.ClassModel;
@@ -24,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ClassBestActivity extends AppCompatActivity {
@@ -35,6 +35,7 @@ public class ClassBestActivity extends AppCompatActivity {
 
     private List<ClassModel> classdata = new ArrayList<>();
     private List<ClassModel> searchdata = new ArrayList<>();
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +57,12 @@ public class ClassBestActivity extends AppCompatActivity {
                 classdata.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     ClassModel classmodel = snapshot.getValue(ClassModel.class);
+                    if(classmodel.starCount>=1){
                         classdata.add(classmodel);
                         searchdata.add(classmodel);
+                    }
                 }
+                Collections.reverse(classdata);
                 classRecyclerViewAdapter.notifyDataSetChanged();
 
             }
@@ -84,6 +88,8 @@ public class ClassBestActivity extends AppCompatActivity {
                         classdata.add(searchdata.get(i));
                     }
                 }
+
+
                 classRecyclerViewAdapter.notifyDataSetChanged();
             }
 
