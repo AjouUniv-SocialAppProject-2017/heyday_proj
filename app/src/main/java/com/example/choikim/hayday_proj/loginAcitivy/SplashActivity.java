@@ -1,9 +1,11 @@
-package com.example.choikim.hayday_proj;
+package com.example.choikim.hayday_proj.loginAcitivy;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.choikim.hayday_proj.R;
 
 /**
  * Created by khy12 on 2017-11-18.

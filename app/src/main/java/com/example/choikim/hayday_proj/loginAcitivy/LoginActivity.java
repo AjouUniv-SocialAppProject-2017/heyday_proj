@@ -1,12 +1,13 @@
-package com.example.choikim.hayday_proj;
+package com.example.choikim.hayday_proj.loginAcitivy;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.telecom.Call;
 import android.widget.Toast;
 
+import com.example.choikim.hayday_proj.MainActivity;
+import com.example.choikim.hayday_proj.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -19,8 +20,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import bolts.Task;
 
 /**
  * Created by khy12 on 2017-11-18.
