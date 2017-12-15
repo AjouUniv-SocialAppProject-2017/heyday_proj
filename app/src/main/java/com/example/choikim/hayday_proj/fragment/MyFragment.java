@@ -5,12 +5,15 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 
@@ -28,6 +31,7 @@ public class MyFragment extends Fragment {
     public ImageView userProfile;
     public ImageView userBackground;
     public TextView userName;
+    public ImageView btnCallPopup;
 
     FirebaseAuth auth;
 
@@ -40,15 +44,41 @@ public class MyFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         final MainActivity main = (MainActivity) getActivity();
-        ImageButton create_class = (ImageButton)main.findViewById(R.id.create_class);
+        btnCallPopup = (ImageButton)main.findViewById(R.id.call_popup);
 
-        create_class.setOnClickListener(new View.OnClickListener() {
+        btnCallPopup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(main,ClassCreateActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(main,ClassCreateActivity.class);
+//                startActivity(intent);
+
+                switch (v.getId()){
+                    case R.id.call_popup:
+                        PopupMenu popup=new PopupMenu(getActivity(),v);
+                        MenuInflater inflater = popup.getMenuInflater();
+                        inflater.inflate(R.menu.menu_popup_fragment_my,popup.getMenu());
+                        popup.show();
+
+                        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem menuItem) {
+                                switch (menuItem.getItemId()){
+                                    case R.id.create_class:
+                                        Intent intent = new Intent(main,ClassCreateActivity.class);
+                                        startActivity(intent);
+                                        break;
+                                    case R.id.create_investigate_board:
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                return false;
+                            }
+                        });
+                        break;
+                }
             }
-        });
+        });//popup menu end
 
 
     }
@@ -63,8 +93,8 @@ public class MyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_my, container, false);
-
-
     }
+
+
 }
 

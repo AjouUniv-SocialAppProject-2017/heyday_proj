@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/create_class"
+        android:title="강의생성" >
+    </item>
+    <item
+        android:id="@+id/create_investigate_board"
+        android:title="수요조사" >
+    </item>
+</menu>
