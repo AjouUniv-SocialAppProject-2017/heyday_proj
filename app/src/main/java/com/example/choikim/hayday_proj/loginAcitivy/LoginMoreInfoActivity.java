@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,17 +28,17 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 
 public class LoginMoreInfoActivity extends Activity{
-    ImageView profile;
-    TextView name;
-    TextView email;
-    EditText age;
-    RadioGroup btnGender;
-    EditText location;
-    EditText introduce;
-    LinearLayout finish;
-    FirebaseAuth auth;
-    RadioGroup rgGender;
-    RadioButton rbGender;
+    public ImageView profile;
+    public TextView name;
+    public TextView email;
+    public EditText age;
+    public RadioGroup btnGender;
+    public EditText location;
+    public EditText introduce;
+    public LinearLayout finish;
+    public FirebaseAuth auth;
+    public RadioGroup rgGender;
+    public RadioButton rbGender;
 
     DatabaseReference userDatabase;
 
@@ -61,8 +62,8 @@ public class LoginMoreInfoActivity extends Activity{
 
 
         //set profile image
-        Glide.with(profile.getContext())
-                .load(auth.getInstance().getCurrentUser().getPhotoUrl())
+        Glide.with(this)
+                .load(auth.getInstance().getCurrentUser().getPhotoUrl().toString())
                 .apply(new RequestOptions().circleCrop())
                 .into(profile);
 
@@ -76,33 +77,33 @@ public class LoginMoreInfoActivity extends Activity{
 
                 //user data upload
                 userDataUpload();
-                
+
                 // activity change loginmore info -> main activity
                 Intent intent = new Intent(LoginMoreInfoActivity.this, MainActivity.class);
                 startActivity(intent);
-                finish();
+
             }
         });
     }
 
     private void userDataUpload(){
         UserModel userModel=new UserModel();
-        userModel.email=auth.getInstance().getCurrentUser().getEmail();
+
+        userModel.email=auth.getInstance().getCurrentUser().getEmail().toString();
         userModel.name=auth.getInstance().getCurrentUser().getDisplayName();
+        userModel.uid=auth.getInstance().getCurrentUser().getUid();
+
         userModel.profileImagePath=auth.getInstance().getCurrentUser().getPhotoUrl().toString();
         userModel.location=location.getText().toString();
         userModel.introduce=introduce.getText().toString();
         userModel.age=Long.parseLong(age.getText().toString());
 
-
         //radio button data
-        int id= rgGender.getId();
-        rbGender=(RadioButton)findViewById(id);
+        rbGender=(RadioButton)findViewById(rgGender.getCheckedRadioButtonId());
         userModel.gender=rbGender.getText().toString();
 
         //firebase upload
         userDatabase.child("users").push().setValue(userModel);
-
 
     }
 }

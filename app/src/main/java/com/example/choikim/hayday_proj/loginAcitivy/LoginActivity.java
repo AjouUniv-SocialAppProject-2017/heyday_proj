@@ -70,9 +70,7 @@ public class LoginActivity extends Activity {
                     finish();
 
                 } else {
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                    startActivity(intent);
-                    finish();
+
 
                 }
             }
@@ -92,11 +90,14 @@ public class LoginActivity extends Activity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             finish();
 
+                            Intent intent = new Intent(LoginActivity.this,LoginMoreInfoActivity.class);
+                            startActivity(intent);
+                            finish();
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "로그인 실패",
                                     Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 });
