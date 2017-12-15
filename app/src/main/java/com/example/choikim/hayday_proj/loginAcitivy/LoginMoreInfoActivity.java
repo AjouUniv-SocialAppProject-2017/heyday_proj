@@ -73,7 +73,11 @@ public class LoginMoreInfoActivity extends Activity{
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //user data upload
                 userDataUpload();
+                
+                // activity change loginmore info -> main activity
                 Intent intent = new Intent(LoginMoreInfoActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -96,6 +100,7 @@ public class LoginMoreInfoActivity extends Activity{
         rbGender=(RadioButton)findViewById(id);
         userModel.gender=rbGender.getText().toString();
 
+        //firebase upload
         userDatabase.child("users").push().setValue(userModel);
 
 
