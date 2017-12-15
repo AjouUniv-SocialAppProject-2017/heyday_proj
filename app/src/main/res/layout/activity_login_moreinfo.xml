@@ -165,7 +165,6 @@
     </LinearLayout>
 
         <LinearLayout
-            android:background="0000cd"
             android:layout_marginTop="30sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

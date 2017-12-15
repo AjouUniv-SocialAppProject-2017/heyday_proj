@@ -13,6 +13,10 @@ public class UserModel {
     public String profileImagePath;
     public String email;
     public String backgroundImagePath;
+    public String introduce;
+    public long age;
+    public String location;
+    public String gender;
 
     public Map<String, Boolean> preference= new HashMap<>();
 
