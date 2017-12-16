@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.choikim.hayday_proj.MainActivity;
 import com.example.choikim.hayday_proj.R;
+import com.example.choikim.hayday_proj.model.UserModel;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -20,6 +22,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * Created by khy12 on 2017-11-18.
@@ -30,6 +36,8 @@ public class LoginActivity extends Activity {
     private CallbackManager mCallbackManager;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+    private boolean[] check = {false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +70,35 @@ public class LoginActivity extends Activity {
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            public void onAuthStateChanged(@NonNull final FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    FirebaseDatabase.getInstance().getReference().child("users").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                                UserModel user=snapshot.getValue(UserModel.class);
 
+                                if((user.uid).equals(firebaseAuth.getInstance().getCurrentUser().getUid().toString())==true){
+                                        check[0]=true;
+                                }
+                            }
+                            
+                            if(check[0]==false){
+                                Intent intent1 = new Intent(LoginActivity.this, LoginMoreInfoActivity.class);
+                                startActivity(intent1);
+                                finish();
+                            }else{
+                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                        }
+                    });
                 } else {
 
 
@@ -88,10 +118,6 @@ public class LoginActivity extends Activity {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            finish();
-
-                            Intent intent = new Intent(LoginActivity.this,LoginMoreInfoActivity.class);
-                            startActivity(intent);
                             finish();
 
                         } else {
@@ -155,6 +181,5 @@ public class LoginActivity extends Activity {
         if(mAuthListener!=null){
             mAuth.removeAuthStateListener(mAuthListener);
         }
-
     }
 }

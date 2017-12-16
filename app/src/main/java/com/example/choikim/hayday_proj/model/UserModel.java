@@ -7,7 +7,7 @@ import java.util.Map;
  * Created by khy12 on 2017-11-21.
  */
 
-public class UserModel {
+public class UserModel implements Cloneable{
     public String uid;
     public String name;
     public String profileImagePath;
@@ -19,5 +19,9 @@ public class UserModel {
     public String gender;
 
     public Map<String, Boolean> preference= new HashMap<>();
+
+    public UserModel(){
+    }
+
 
 }
