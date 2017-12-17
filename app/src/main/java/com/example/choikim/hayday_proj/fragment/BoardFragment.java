@@ -1,7 +1,6 @@
 package com.example.choikim.hayday_proj.fragment;
 
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
 import com.example.choikim.hayday_proj.BoardCommentActivity;
 import com.example.choikim.hayday_proj.MakeBoardActivity;
 import com.example.choikim.hayday_proj.R;
@@ -35,9 +33,7 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -240,10 +236,10 @@ public class BoardFragment extends Fragment{
 
             public BoardViewHolder(View view) {
                 super(view);
-                imageView_profile=(ImageView)view.findViewById(R.id.imageView_item_board_profile);
+                imageView_profile=(ImageView)view.findViewById(R.id.imageView_item_survey_profile);
                 textView_context=(TextView)view.findViewById(R.id.board_item_context);
-                textView_name=(TextView)view.findViewById(R.id.board_item_name);
-                textView_wTime=(TextView)view.findViewById(R.id.board_item_date);
+                textView_name=(TextView)view.findViewById(R.id.survey_item_name);
+                textView_wTime=(TextView)view.findViewById(R.id.survey_item_date);
                 btn_like = (Button)view.findViewById(R.id.btn_item_board_like);
                 btn_make_comment = (Button)view.findViewById(R.id.btn_item_board_comment);
                 textView_comment_cnt=(TextView)view.findViewById(R.id.textView_item_board_commentCnt);

@@ -1,5 +1,6 @@
 package com.example.choikim.hayday_proj.fragment;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -19,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -32,6 +35,7 @@ import com.example.choikim.hayday_proj.loginAcitivy.LoginActivity;
 import com.example.choikim.hayday_proj.model.UserModel;
 import com.example.choikim.hayday_proj.fragment.MyFragmentBoard;
 import com.example.choikim.hayday_proj.fragment.MyFragmentClass;
+import com.example.choikim.hayday_proj.tool.HeightWrappingViewPager;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -51,7 +55,7 @@ public class MyFragment extends Fragment {
     public ImageView btnCallPopup;
     public Button btnLogOut;
 
-    public ViewPager viewPager;
+    public HeightWrappingViewPager viewPager;
     public Button btnMyBoard;
     public Button btnMyClass;
 
@@ -77,7 +81,7 @@ public class MyFragment extends Fragment {
         btnLogOut=(Button)main.findViewById(R.id.btn_my_fagment_logout);
 
         //view pager item
-        viewPager=(ViewPager)main.findViewById(R.id.viewpager_my_fragment);
+        viewPager=(HeightWrappingViewPager)main.findViewById(R.id.viewpager_my_fragment);
         btnMyBoard=(Button)main.findViewById(R.id.btn_my_board);
         btnMyClass=(Button)main.findViewById(R.id.btn_my__class);
 
@@ -171,10 +175,37 @@ public class MyFragment extends Fragment {
         btnMyClass.setTag(1);
         btnMyBoard.setOnClickListener(movePageListener);
         btnMyBoard.setTag(0);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                resizePage(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
+        public void resizePage(int position){
+        View view = viewPager.findViewById(position);
+        if(view==null)
+            return;
+
+        view.measure(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        int height=view.getMeasuredHeight();
+        int width=view.getMeasuredWidth();
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
+            viewPager.setLayoutParams(params);
+        }
 
     View.OnClickListener movePageListener = new View.OnClickListener(){
-
         @Override
         public void onClick(View view) {
             int tag=(int)view.getTag();

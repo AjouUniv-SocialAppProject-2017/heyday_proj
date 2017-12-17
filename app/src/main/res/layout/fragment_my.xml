@@ -90,12 +90,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.v4.view.ViewPager
+            <com.example.choikim.hayday_proj.tool.HeightWrappingViewPager
                 android:id="@+id/viewpager_my_fragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:layout_below="@+id/ll"
-                ></android.support.v4.view.ViewPager>
+                ></com.example.choikim.hayday_proj.tool.HeightWrappingViewPager>
 
         </LinearLayout>
 
