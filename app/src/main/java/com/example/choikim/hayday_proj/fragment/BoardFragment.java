@@ -1,5 +1,6 @@
 package com.example.choikim.hayday_proj.fragment;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -163,16 +165,21 @@ public class BoardFragment extends Fragment{
             ((BoardViewHolder)holder).btn_like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.i("11111",uidLists.get(position));
                     onStarClicked(database.getReference().child("boards").child(uidLists.get(position)));
 
                 }
             });//like button onclick listener end
 
+            //like button image change
             if (boardModels.get(position).stars.containsKey(auth.getCurrentUser().getUid())){
                 ((BoardViewHolder)holder).imageView_heartimage.setImageResource(R.drawable.ic_favorite_black_24dp);
             }else{
                 ((BoardViewHolder)holder).imageView_heartimage.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+            }
+
+            if((boardModels.get(position).flag).equals("2")){
+                ((BoardViewHolder)holder).btn_like.setText("원해요");
+                ((BoardViewHolder)holder).layout_item_board.setBackgroundColor(Color.rgb(240,255,255));
             }
 
         }
@@ -229,6 +236,7 @@ public class BoardFragment extends Fragment{
             public TextView textView_comment_cnt;
             public ImageView imageView_heartimage;
             public TextView textView_like_cnt;
+            public LinearLayout layout_item_board;
 
             public BoardViewHolder(View view) {
                 super(view);
@@ -241,6 +249,7 @@ public class BoardFragment extends Fragment{
                 textView_comment_cnt=(TextView)view.findViewById(R.id.textView_item_board_commentCnt);
                 imageView_heartimage=(ImageView)view.findViewById(R.id.imageView_item_board_heart);
                 textView_like_cnt=(TextView)view.findViewById(R.id.textView_item_board_likeCnt);
+                layout_item_board=(LinearLayout)view.findViewById(R.id.item_board_layout);
             }
         }
     }
