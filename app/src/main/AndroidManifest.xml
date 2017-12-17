@@ -60,6 +60,7 @@
         <activity android:name=".ClassCreateActivity" />
         <activity android:name=".BoardCommentActivity" />
         <activity android:name=".ClassNewActivity" />
+        <activity android:name=".MakeSurveyActivity"/>
         <activity android:name=".ClassBestActivity"></activity>
     </application>
 

@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.choikim.hayday_proj.ClassCreateActivity;
 import com.example.choikim.hayday_proj.MainActivity;
+import com.example.choikim.hayday_proj.MakeSurveyActivity;
 import com.example.choikim.hayday_proj.R;
 import com.example.choikim.hayday_proj.loginAcitivy.LoginActivity;
 import com.example.choikim.hayday_proj.model.UserModel;
@@ -87,6 +88,8 @@ public class MyFragment extends Fragment {
                                         startActivity(intent);
                                         break;
                                     case R.id.create_investigate_board:
+                                        Intent intent1 = new Intent(main, MakeSurveyActivity.class);
+                                        startActivity(intent1);
                                         break;
                                     default:
                                         break;
