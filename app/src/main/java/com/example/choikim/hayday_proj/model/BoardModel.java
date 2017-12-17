@@ -25,7 +25,7 @@ public class BoardModel {
     public Map<String, Boolean> stars = new HashMap<>();
 
     public Map<String,Comment> comments=new HashMap<>();//댓글 기능
-    public Map<String,Like> likes=new HashMap<>();//좋아요 카운팅
+    //ublic Map<String,Like> likes=new HashMap<>();//좋아요 카운팅
 
     public static class Comment{
         public String name;
@@ -35,9 +35,9 @@ public class BoardModel {
         public String imagePath;
     }
 
-    public static class Like{
-        public String name;
-        public String uid;
-    }
+//    public static class Like{
+//        public String name;
+//        public String uid;
+//    }
 
 }
