@@ -78,12 +78,12 @@ public class LoginActivity extends Activity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                                 UserModel user=snapshot.getValue(UserModel.class);
-
+                                //check user uid
                                 if((user.uid).equals(firebaseAuth.getInstance().getCurrentUser().getUid().toString())==true){
                                         check[0]=true;
                                 }
                             }
-                            
+                            //users database check
                             if(check[0]==false){
                                 Intent intent1 = new Intent(LoginActivity.this, LoginMoreInfoActivity.class);
                                 startActivity(intent1);
@@ -93,15 +93,13 @@ public class LoginActivity extends Activity {
                                 startActivity(intent);
                                 finish();
                             }
-
                         }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
                         }
                     });
                 } else {
-
-
+                    // user ==null
                 }
             }
         };
