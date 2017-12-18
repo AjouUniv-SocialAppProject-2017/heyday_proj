@@ -67,6 +67,38 @@
 
     </android.support.constraint.ConstraintLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_my_board"
+                android:text="내 글"/>
+            <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_my__class"
+                android:text="내 강좌"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linearlayout_viewpager_my_fragment">
+
+            <com.example.choikim.hayday_proj.tool.HeightWrappingViewPager
+                android:id="@+id/viewpager_my_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll"
+                ></com.example.choikim.hayday_proj.tool.HeightWrappingViewPager>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

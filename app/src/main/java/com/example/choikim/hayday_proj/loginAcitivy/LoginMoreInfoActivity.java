@@ -89,6 +89,7 @@ public class LoginMoreInfoActivity extends Activity{
     private void userDataUpload(){
         UserModel userModel=new UserModel();
 
+
         userModel.email=auth.getInstance().getCurrentUser().getEmail().toString();
         userModel.name=auth.getInstance().getCurrentUser().getDisplayName();
         userModel.uid=auth.getInstance().getCurrentUser().getUid();

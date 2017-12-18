@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/item_board_layout">
+    android:id="@+id/item_survey_layout">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,9 +17,11 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/survey_item_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/ic_launcher_round" />
@@ -28,10 +31,12 @@
             android:layout_width="0dp"
             android:layout_height="19dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="김호영"
             app:layout_constraintBottom_toTopOf="@+id/survey_item_date"
+            app:layout_constraintEnd_toStartOf="@+id/btn_make_class"
             app:layout_constraintStart_toEndOf="@+id/imageView_item_survey_profile"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,20 +49,34 @@
             android:layout_marginStart="8dp"
             android:text="2017년 11월 21일"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_make_class"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView_item_survey_profile" />
+
+        <Button
+            android:id="@+id/btn_make_class"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Make Class =>"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/survey_item_name"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
     <TextView
-        android:id="@+id/board_item_context"
+        android:id="@+id/survey_item_context"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:text="하이ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ"
-        android:layout_margin="8dp"/>
+        android:text="하이ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,15 +88,15 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imageView_item_board_heart"
-                android:layout_margin="5dp"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
+                android:text="참여희망 인원"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"/>
 
             <TextView
-                android:id="@+id/textView_item_board_likeCnt"
+                android:id="@+id/textView_item_survey_likeCnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -92,13 +111,14 @@
                 android:layout_height="wrap_content"
                 android:text="댓글"
                 android:layout_gravity="center"/>
+
             <TextView
+                android:id="@+id/textView_item_survey_commentCnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:id="@+id/textView_item_board_commentCnt"
-                android:text="0"
-                android:layout_margin="5dp"/>
+                android:layout_margin="5dp"
+                android:text="0" />
         </LinearLayout>
 
         <LinearLayout
@@ -107,14 +127,14 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn_item_board_like"
+                android:id="@+id/btn_item_survey_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="좋아요" />
 
             <Button
-                android:id="@+id/btn_item_board_comment"
+                android:id="@+id/btn_item_survey_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
