@@ -1,21 +1,22 @@
 package com.example.choikim.hayday_proj.tool;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 
 /**
  * Created by khy12 on 2017-12-18.
  */
 public class HeightWrappingViewPager extends ViewPager {
-    private View mCurrentView;
 
-    public HeightWrappingViewPager(Context context) {
+    public HeightWrappingViewPager (Context context) {
         super(context);
     }
 
-    public HeightWrappingViewPager(Context context, AttributeSet attrs) {
+    public HeightWrappingViewPager (Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -23,18 +24,28 @@ public class HeightWrappingViewPager extends ViewPager {
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        if (mCurrentView != null) {
-            mCurrentView.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+        boolean wrapHeight = MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.AT_MOST;
 
-            int height = Math.max(0, mCurrentView.getMeasuredHeight());
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
+        final View tab = getChildAt(0);
+        int width = getMeasuredWidth();
+        int tabHeight = tab.getMeasuredHeight();
 
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        if (wrapHeight) {
+            // Keep the current measured width.
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
         }
+
+        int fragmentHeight = measureFragment(((Fragment) getAdapter().instantiateItem(this, getCurrentItem())).getView());
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(tabHeight + fragmentHeight + (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()), MeasureSpec.AT_MOST);
+
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-    public void measureCurrentView(View currentView) {
-        mCurrentView = currentView;
-        requestLayout();
+    public int measureFragment(View view) {
+        if (view == null)
+            return 0;
+
+        view.measure(0, 0);
+        return view.getMeasuredHeight();
     }
 }

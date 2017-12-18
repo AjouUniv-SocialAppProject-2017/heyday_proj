@@ -118,6 +118,13 @@ public class MyFragmentBoard extends Fragment {
                 ((SurveyViewHolder)holder).btnMakeClass.setVisibility(View.INVISIBLE);
             }
 
+            ((SurveyViewHolder)holder).btnMakeClass.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
 
 
         }

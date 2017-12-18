@@ -88,12 +88,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:id="@+id/linearlayout_viewpager_my_fragment">
 
             <com.example.choikim.hayday_proj.tool.HeightWrappingViewPager
                 android:id="@+id/viewpager_my_fragment"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/ll"
                 ></com.example.choikim.hayday_proj.tool.HeightWrappingViewPager>
 

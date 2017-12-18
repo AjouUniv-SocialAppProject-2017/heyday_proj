@@ -56,6 +56,7 @@ public class MyFragment extends Fragment {
     public Button btnLogOut;
 
     public HeightWrappingViewPager viewPager;
+    public LinearLayout linearlayoutViewPager;
     public Button btnMyBoard;
     public Button btnMyClass;
 
@@ -84,6 +85,8 @@ public class MyFragment extends Fragment {
         viewPager=(HeightWrappingViewPager)main.findViewById(R.id.viewpager_my_fragment);
         btnMyBoard=(Button)main.findViewById(R.id.btn_my_board);
         btnMyClass=(Button)main.findViewById(R.id.btn_my__class);
+        linearlayoutViewPager=(LinearLayout)main.findViewById(R.id.linearlayout_viewpager_my_fragment);
+
 
 
         //popup menu on click listener
@@ -192,6 +195,13 @@ public class MyFragment extends Fragment {
 
             }
         });
+
+//        int viewpagerWidth=viewPager.getWidth();
+//        int viewpagerHeight=viewPager.getHeight();
+//
+//        Log.i("heightviewpager", String.valueOf(viewpagerHeight));
+        //LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(viewpagerWidth,viewpagerHeight);
+        //linearlayoutViewPager.setLayoutParams(params);
     }
         public void resizePage(int position){
         View view = viewPager.findViewById(position);
