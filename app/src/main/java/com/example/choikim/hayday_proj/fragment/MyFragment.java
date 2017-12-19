@@ -171,13 +171,16 @@ public class MyFragment extends Fragment {
 
 
         //view pager
-        viewPager.setAdapter(new pagerAdapter(main.getSupportFragmentManager()));
+        viewPager.setAdapter(new pagerAdapter(getChildFragmentManager()));
         viewPager.setCurrentItem(0);
 
         btnMyClass.setOnClickListener(movePageListener);
         btnMyClass.setTag(1);
         btnMyBoard.setOnClickListener(movePageListener);
         btnMyBoard.setTag(0);
+
+
+        viewPager.measure(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -187,7 +190,8 @@ public class MyFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                resizePage(position);
+
+                //resizePage(position);
             }
 
             @Override
@@ -208,9 +212,11 @@ public class MyFragment extends Fragment {
         if(view==null)
             return;
 
-        view.measure(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        view.measure(ViewPager.LayoutParams.MATCH_PARENT, ViewPager.LayoutParams.WRAP_CONTENT);
         int height=view.getMeasuredHeight();
         int width=view.getMeasuredWidth();
+
+            Log.i("sizesize", height+" "+width);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
             viewPager.setLayoutParams(params);
         }

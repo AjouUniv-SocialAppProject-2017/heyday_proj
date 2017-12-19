@@ -17,6 +17,7 @@ public class UserModel implements Cloneable{
     public long age;
     public String location;
     public String gender;
+    public String pushToken;
 
     public Map<String, Boolean> preference= new HashMap<>();
 
