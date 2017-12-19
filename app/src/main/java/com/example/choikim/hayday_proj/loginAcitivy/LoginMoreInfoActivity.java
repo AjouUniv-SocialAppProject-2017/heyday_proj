@@ -22,23 +22,27 @@ import com.example.choikim.hayday_proj.model.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by khy12 on 2017-12-15.
  */
 
 public class LoginMoreInfoActivity extends Activity{
-    public ImageView profile;
-    public TextView name;
-    public TextView email;
-    public EditText age;
-    public RadioGroup btnGender;
-    public EditText location;
-    public EditText introduce;
-    public LinearLayout finish;
-    public FirebaseAuth auth;
-    public RadioGroup rgGender;
-    public RadioButton rbGender;
+    private ImageView profile;
+    private TextView name;
+    private TextView email;
+    private EditText age;
+    private RadioGroup btnGender;
+    private EditText location;
+    private EditText introduce;
+    private LinearLayout finish;
+    private FirebaseAuth auth;
+    private RadioGroup rgGender;
+    private RadioButton rbGender;
 
     DatabaseReference userDatabase;
 
@@ -77,6 +81,7 @@ public class LoginMoreInfoActivity extends Activity{
 
                 //user data upload
                 userDataUpload();
+                //passPushTokenToServer();
 
                 // activity change loginmore info -> main activity
                 Intent intent = new Intent(LoginMoreInfoActivity.this, MainActivity.class);
@@ -89,8 +94,8 @@ public class LoginMoreInfoActivity extends Activity{
     private void userDataUpload(){
         UserModel userModel=new UserModel();
 
-
-        userModel.email=auth.getInstance().getCurrentUser().getEmail().toString();
+        if(auth.getInstance().getCurrentUser().getEmail().toString()!=null)
+            userModel.email=auth.getInstance().getCurrentUser().getEmail().toString();
         userModel.name=auth.getInstance().getCurrentUser().getDisplayName();
         userModel.uid=auth.getInstance().getCurrentUser().getUid();
 
@@ -99,12 +104,20 @@ public class LoginMoreInfoActivity extends Activity{
         userModel.introduce=introduce.getText().toString();
         userModel.age=Long.parseLong(age.getText().toString());
 
+        userModel.pushToken=FirebaseInstanceId.getInstance().getToken();
         //radio button data
         rbGender=(RadioButton)findViewById(rgGender.getCheckedRadioButtonId());
         userModel.gender=rbGender.getText().toString();
 
         //firebase upload
         userDatabase.child("users").push().setValue(userModel);
-
     }
+
+//    void passPushTokenToServer(){
+//        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        String token= FirebaseInstanceId.getInstance().getToken();
+//        Map<String,Object> map= new HashMap<>();
+//        map.put("pushToken",token);
+//        FirebaseDatabase.getInstance().getReference().child("users").child(uid).updateChildren(map);
+//    }
 }

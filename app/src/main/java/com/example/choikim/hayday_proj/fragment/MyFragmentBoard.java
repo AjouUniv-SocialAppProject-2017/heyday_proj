@@ -1,5 +1,6 @@
 package com.example.choikim.hayday_proj.fragment;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.choikim.hayday_proj.ClassCreateActivity;
 import com.example.choikim.hayday_proj.R;
 import com.example.choikim.hayday_proj.model.BoardModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -99,7 +101,7 @@ public class MyFragmentBoard extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
             mDatabase=FirebaseDatabase.getInstance().getReference();
             final String boardKey = boardModels.get(position).boardUid;
 
@@ -121,7 +123,10 @@ public class MyFragmentBoard extends Fragment {
             ((SurveyViewHolder)holder).btnMakeClass.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    Intent intent = new Intent(getActivity(),ClassCreateActivity.class);
+                    intent.putExtra("boardUid",String.valueOf(boardModels.get(position).boardUid));
+                    intent.putExtra("boardFlag","1");
+                    startActivity(intent);
                 }
             });
 
